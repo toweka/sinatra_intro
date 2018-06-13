@@ -1,0 +1,7 @@
+<h1>Welcome to Stars Homepage</h1>
+
+<% @stars.each do |star| %>
+  <div>
+    <h1><a href="/stars/<%= star[:id] %>"><%= star[:title] %></a></h1>
+  </div>
+<% end %>
