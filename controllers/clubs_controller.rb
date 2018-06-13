@@ -10,8 +10,28 @@ class ClubsController < Sinatra::Base
   # sets the view directory correctly
   set :views, Proc.new { File.join(root, "views") }
 
+  $clubs = [
+    {
+      id: 0,
+      title: "Clubs 1",
+      body: "This is the first club"
+    },
+    {
+      id: 1,
+      title: "Clubs 2",
+      body: "This is clubs 2"
+    },
+    {
+      id: 2,
+      title: "Clubs 3",
+      body: "This is post 3"
+    }
+  ]
+
   get '/clubs' do
-    "<h1>Clubs Index</h1> <p>Welcome to the rare and wonderful website that links football cubs with completely unrelated blog posts!"
+    @title = "Clubs"
+    @clubs = $clubs
+    erb :'clubs/index'
   end
 
   # New page
@@ -28,9 +48,12 @@ class ClubsController < Sinatra::Base
   # Show page
   get '/clubs/:id' do
 
-    id = params[:id]
+    id = params[:id].to_i
 
-    "<h3>This is the #{id} page</h3>"
+    @club = $clubs[id]
+    @title = @club[:title]
+
+    erb :"clubs/show"
   end
 
   # Edit page

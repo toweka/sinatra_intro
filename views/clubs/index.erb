@@ -1,0 +1,7 @@
+<h1>Welcome to Clubs Homepage</h1>
+
+<% @clubs.each do |club| %>
+  <div>
+    <h1><a href="/clubs/<%= club[:id] %>"><%= club[:title] %></a></h1>
+  </div>
+<% end %>
