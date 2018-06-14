@@ -95,6 +95,7 @@ class PostsController < Sinatra::Base
 
     @post = $posts[id]
 
+    #redirects to edit.erb file
     erb :"posts/edit"
   end
 
@@ -114,7 +115,11 @@ class PostsController < Sinatra::Base
 
   # Destroy page
   delete "/posts/:id" do
+    id = params[:id].to_i
 
+    $posts.delete_at(id)
+
+    redirect "/posts"
   end
 
 end

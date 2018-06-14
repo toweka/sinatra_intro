@@ -2,3 +2,8 @@
 <p><%= @post[:body] %></p>
 
 <a href="/posts/<%= @post[:id] %>/edit">edit</a>
+
+<form action="/posts/<%= @post[:id] %>" method="POST">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="DELETE">
+</form>
