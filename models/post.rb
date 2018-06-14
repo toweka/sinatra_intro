@@ -50,8 +50,16 @@ class Post
     if !self.id
       sql = "INSERT INTO post(title, body) VALUES('#{self.title}', '#{self.body}')"
     else
-      sql = "UPDATE post SET title='#{self.title}', body='#{self.body}' WHERE id = #{self.id}"  
+      sql = "UPDATE post SET title='#{self.title}', body='#{self.body}' WHERE id = #{self.id}"
     end
+
+    conn.exec(sql)
+  end
+
+  def self.destroy(id)
+    conn = self.open_connection
+
+    sql = "DELETE FROM post WHERE id = #{id}"
 
     conn.exec(sql)
   end
