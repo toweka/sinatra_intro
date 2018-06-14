@@ -51,13 +51,12 @@ class PostsController < Sinatra::Base
 
   # New page
   get '/posts/new' do
-    # Instance variable
-    "This is the new page!!"
+    erb :"posts/new"
   end
 
   # Create page
-  post "/posts/:id" do
-
+  post "/" do
+    "CREATE"
   end
 
   # This creates a new page that is linked to the homepage
