@@ -52,11 +52,16 @@ class PostsController < Sinatra::Base
 
   # New page
   get '/posts/new' do
+    @post = {
+      id: "",
+      title: "",
+      body: ""
+    }
     erb :"posts/new"
   end
 
   # Create page
-  post "/posts" do
+  post "/posts/" do
     # puts params
     new_post = {
       id: $posts.length,
@@ -86,12 +91,25 @@ class PostsController < Sinatra::Base
 
   # Edit page
   get "/posts/:id/edit" do
-    "Edit page"
+    id = params[:id].to_i
+
+    @post = $posts[id]
+
+    erb :"posts/edit"
   end
 
   # Update page
   put "/posts/:id" do
+    id = params[:id].to_i
 
+    post = $posts[id]
+
+    post[:title] = params[:title]
+    post[:body] = params[:body]
+
+    $posts[id] = post
+
+    redirect "/posts/:id"
   end
 
   # Destroy page
