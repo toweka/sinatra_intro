@@ -44,4 +44,12 @@ class Post
     return post
   end
 
+  def save
+    conn = Post.open_connection
+
+    sql = "INSERT INTO post(title, body) VALUES('#{self.title}', '#{self.body}')"
+
+    conn.exec(sql)
+  end
+
 end

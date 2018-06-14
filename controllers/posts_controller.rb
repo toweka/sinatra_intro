@@ -64,16 +64,14 @@ class PostsController < Sinatra::Base
 
   # Create page
   post "/posts/" do
-    # puts params
-    new_post = {
-      id: $posts.length,
-      title: params[:title],
-      body: params[:body]
-    }
+    post = Post.new
 
-    $posts.push(new_post)
+    post.title = params[:title]
+    post.body = params[:body]
 
-    redirect "/posts"
+    post.save
+
+    redirect '/posts'
 
   end
 
