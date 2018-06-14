@@ -39,6 +39,8 @@ class PostsController < Sinatra::Base
     <br>
     <h1>Main Index Page</h1>"
 
+    @posts = Post.all
+
   end
 
   # get this information and display it to the screen
@@ -46,7 +48,7 @@ class PostsController < Sinatra::Base
   # Index page
   get '/posts' do
     @title = "Blog Posts"
-    @posts = $posts
+    @posts = Post.all
     erb :'posts/index'
   end
 
@@ -82,8 +84,7 @@ class PostsController < Sinatra::Base
     #params returns a string
     id = params[:id].to_i
 
-    @post = $posts[id]
-    @title = @post[:title]
+    @post = Post.find(id)
 
     erb :"posts/show"
 
