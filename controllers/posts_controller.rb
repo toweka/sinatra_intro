@@ -35,6 +35,7 @@ class PostsController < Sinatra::Base
   get '/' do
     "<a href='/clubs'>Clubs Index</a>
     <a href='/posts'>Posts Index</a>
+    <a href='/stars'>Stars Index</a>
     <br>
     <h1>Main Index Page</h1>"
 
@@ -55,8 +56,18 @@ class PostsController < Sinatra::Base
   end
 
   # Create page
-  post "/" do
-    "CREATE"
+  post "/posts" do
+    # puts params
+    new_post = {
+      id: $posts.length,
+      title: params[:title],
+      body: params[:body]
+    }
+
+    $posts.push(new_post)
+
+    redirect "/posts"
+
   end
 
   # This creates a new page that is linked to the homepage
