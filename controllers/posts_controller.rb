@@ -98,14 +98,14 @@ class PostsController < Sinatra::Base
   put "/posts/:id" do
     id = params[:id].to_i
 
-    post = $posts[id]
+    post = Post.find(id)
 
-    post[:title] = params[:title]
-    post[:body] = params[:body]
+    post.title = params[:title]
+    post.body = params[:body]
 
-    $posts[id] = post
+    post.save
 
-    redirect "/posts/:id"
+    redirect "/posts/#{id}"
   end
 
   # Destroy page

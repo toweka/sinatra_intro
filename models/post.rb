@@ -47,10 +47,14 @@ class Post
   def save
     conn = Post.open_connection
 
-    sql = "INSERT INTO post(title, body) VALUES('#{self.title}', '#{self.body}')"
+    if !self.id
+      sql = "INSERT INTO post(title, body) VALUES('#{self.title}', '#{self.body}')"
+    else
+      sql = "UPDATE post SET title='#{self.title}', body='#{self.body}' WHERE id = #{self.id}"  
+    end
 
     conn.exec(sql)
   end
-  
+
 
 end
