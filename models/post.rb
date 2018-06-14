@@ -51,5 +51,6 @@ class Post
 
     conn.exec(sql)
   end
+  
 
 end

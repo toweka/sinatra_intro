@@ -54,11 +54,8 @@ class PostsController < Sinatra::Base
 
   # New page
   get '/posts/new' do
-    @post = {
-      id: "",
-      title: "",
-      body: ""
-    }
+    @post = Post.new
+
     erb :"posts/new"
   end
 
@@ -92,9 +89,8 @@ class PostsController < Sinatra::Base
   get "/posts/:id/edit" do
     id = params[:id].to_i
 
-    @post = $posts[id]
+    @post = Post.find(id)
 
-    #redirects to edit.erb file
     erb :"posts/edit"
   end
 
